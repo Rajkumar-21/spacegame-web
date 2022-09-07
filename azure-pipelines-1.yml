@@ -11,4 +11,14 @@ pool:
 
 steps:
   - script: echo Hello All!
+
+  - task: PowerShell@2
+    inputs:
+      targetType: 'inline'
+      script: |
+        # Write your PowerShell commands here.
+        
+        Write-Host $(whoami)
+        Write-Host $(hostname)
+        Write-Host $(Date)
     
