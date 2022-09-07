@@ -9,23 +9,25 @@ trigger:
 pool:
   vmImage: ubuntu-latest
 
+variables:
+ buildConfiguration: 'Release'
 steps:
-- script: echo Hello, world!
-  displayName: 'Run a one-line script'
+- task: DotNetCoreCLI@2
+  displayName: Restore
+  inputs:
+    command: restore
+    projects: '**/*.csproj'
+    feedsToUse: 'select'
 
-- script: |
-    echo Add other tasks to build, test, and deploy your project.
-    echo See https://aka.ms/yaml
-  displayName: 'Run a multi-line script'
+- task: DotNetCoreCLI@2
+  inputs:
+    command: 'build'
+    projects: '**/*.csproj'
+    arguments: '--configuration $(buildConfiguration)'
 
-
-- script: |
-    echo This is practice script
-    az --version
-    az extension add -n azure-devops
-    echo $(AZURE_DEVOPS_CLI_PAT) | az devops login
-    az devops configure --default organization=https://dev.azure.com/rajkumarravi21897/ project="CI-CD-Learning"
-    az devops project list --output table
-  displayName:  'Show list of projects'
-  env:
-    AZURE_DEVOPS_CLI_PAT: $(System.AccessToken)
+- task: PublishBuildArtifacts@1
+  inputs:
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+    ArtifactName: 'drop'
+    publishLocation: Container
+    
