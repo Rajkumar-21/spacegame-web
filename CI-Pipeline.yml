@@ -40,12 +40,11 @@ steps:
     publishLocation: 'Container'
 
 
-
-# - task: DownloadPipelineArtifact@2
-#   inputs:
-#    buildType: 'current'
-#    artifactName: 'WebGame-Out'
-#    targetPath: '$(System.ArtifactStagingDirectory)'
+- task: DownloadPipelineArtifact@2
+  inputs:
+   buildType: 'current'
+   artifactName: 'WebGame-Out'
+   targetPath: '$(System.ArtifactStagingDirectory)'
 
 - task: AzureRmWebAppDeployment@4
   inputs:
