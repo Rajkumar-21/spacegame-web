@@ -39,13 +39,10 @@ steps:
     ArtifactName: 'WebGame-Out'
     publishLocation: 'Container'
 
+
 - task: AzureRmWebAppDeployment@4
+  displayName: 'Deploy Azure App Service'
   inputs:
-    ConnectionType: 'AzureRM'
     azureSubscription: 'Azure for Students(8cfff015-ac51-44ee-bbdd-b03bd89b58c2)'
-    appType: 'webApp'
+    appType: webApp
     WebAppName: 'Webapp-spacegame'
-    packageForLinux: '$(System.ArtficatStagingDirectory)/WebGame-Out/*.zip'
-    enableCustomDeployment: true
-    DeploymentType: 'zipDeploy'
-    TakeAppOfflineFlag: false
