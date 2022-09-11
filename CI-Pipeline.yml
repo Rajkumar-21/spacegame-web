@@ -45,4 +45,4 @@ steps:
     azureSubscription: 'Azure for Students(8cfff015-ac51-44ee-bbdd-b03bd89b58c2)'
     appType: 'webApp'
     WebAppName: 'Webapp-spacegame'
-    packageForLinux: '$(System.AtficatStagingDirectory)/**/*.zip'
+    packageForLinux: '$(System.ArtficatStagingDirectory)/**/*.zip'
