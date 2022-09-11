@@ -38,3 +38,11 @@ steps:
     PathtoPublish: '$(Build.ArtifactStagingDirectory)'
     ArtifactName: 'WebGame-Out'
     publishLocation: 'Container'
+
+- task: AzureRmWebAppDeployment@4
+  inputs:
+    ConnectionType: 'AzureRM'
+    azureSubscription: 'Azure for Students(8cfff015-ac51-44ee-bbdd-b03bd89b58c2)'
+    appType: 'webApp'
+    WebAppName: 'Webapp-spacegame'
+    packageForLinux: '$(System.DefaultWorkingDirectory)/**/*.zip'
