@@ -44,7 +44,7 @@ steps:
 - task: DownloadPipelineArtifact@2
   inputs:
    buildType: 'current'
-   artifactName: 'drop'
+   artifactName: 'WebGame-Out'
    targetPath: '$(System.DefaultWorkingDirectory)'
 
 - task: AzureRmWebAppDeployment@4
