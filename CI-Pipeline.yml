@@ -40,9 +40,18 @@ steps:
     publishLocation: 'Container'
 
 
-- task: AzureRmWebAppDeployment@4
-  displayName: 'Deploy Azure App Service'
+
+- task: DownloadPipelineArtifact@2
   inputs:
-    azureSubscription: 'Azure for Students(8cfff015-ac51-44ee-bbdd-b03bd89b58c2)'
-    appType: webApp
-    WebAppName: 'Webapp-spacegame'
+   buildType: 'current'
+   artifactName: 'drop'
+   targetPath: '$(System.DefaultWorkingDirectory)'
+
+- task: AzureRmWebAppDeployment@4
+  inputs:
+   ConnectionType: 'AzureRM'
+   azureSubscription: 'Azure for Students(8cfff015-ac51-44ee-bbdd-b03bd89b58c2)'
+   appType: 'webApp'
+   WebAppName: 'Webapp-spacegame'
+   ResourceGroupName: 'Webapp-cicd'
+   packageForLinux: '$(System.DefaultWorkingDirectory)/**/*.zip'
